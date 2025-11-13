@@ -5,7 +5,7 @@ export interface TaskInput {
   completed: boolean;
 }
 
-//Clase Task
+
 export class Task {
   id: string;
   title: string;
