@@ -43,6 +43,53 @@ class TaskController {
         }
     }
 
+    // Actualiza una tarea que ya existe
+    async updateTask(req, res, next) {
+        try {
+            const { id } = req.params;
+            const updateData = req.body;
 
+            const updatedTask = this.taskService.updateTask(id, updateData);
+
+            res.status(200).json({
+                success: true,
+                data: updatedTask
+            });
+        } 
+        catch (error) {
+            if (error.message === 'Tarea no encontrada') {
+                return res.status(404).json({
+                    success: false,
+                    error: error.message
+                });
+            }
+            next(error);
+        }
+    }
+
+    // Elimina una tarea
+    async deleteTask(req, res, next) {
+        try {
+            const { id } = req.params;
+
+            const result = this.taskService.deleteTask(id);
+
+            res.status(200).json({
+                success: true,
+                data: result
+            });
+        } catch (error) {
+            if (error.message === 'Tarea no encontrada') {
+                return res.status(404).json({
+                    success: false,
+                    error: error.message
+                });
+            }
+            next(error);
+        }
+    }
 }
+
+module.exports = TaskController;
+
 
