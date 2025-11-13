@@ -1,7 +1,9 @@
 import { type Task, type TaskInput } from '../types/task';
 import { type ApiError } from '../types/api';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
+
+//const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 // Función auxiliar para manejar respuestas HTTP
 async function handleResponse<T>(response: Response): Promise<T> {
@@ -12,18 +14,20 @@ async function handleResponse<T>(response: Response): Promise<T> {
     };
     throw error;
   }
-  return response.json();
+  let operationResult = await response.json().then(function(result) { return result.data; });
+  let ret = new Promise<T>((resolve) => { resolve(operationResult); });
+  return ret;
 }
 
 // GET /api/tasks - Obtener todas las tareas
 export async function getAllTasks(): Promise<Task[]> {
-  const response = await fetch(`${API_BASE_URL}/api/tasks`);
-  return handleResponse<Task[]>(response);
+  const response = await fetch(`/api/tasks`);
+  return (handleResponse<Task[]>(response) as any);
 }
 
 // POST /api/tasks - Crear una nueva tarea
 export async function createTask(taskData: TaskInput): Promise<Task> {
-  const response = await fetch(`${API_BASE_URL}/api/tasks`, {
+  const response = await fetch(`/api/tasks`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -35,7 +39,7 @@ export async function createTask(taskData: TaskInput): Promise<Task> {
 
 // PUT /api/tasks/:id - Actualizar una tarea existente
 export async function updateTask(id: string, taskData: TaskInput): Promise<Task> {
-  const response = await fetch(`${API_BASE_URL}/api/tasks/${id}`, {
+  const response = await fetch(`/api/tasks/${id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -47,7 +51,7 @@ export async function updateTask(id: string, taskData: TaskInput): Promise<Task>
 
 // DELETE /api/tasks/:id - Eliminar una tarea
 export async function deleteTask(id: string): Promise<void> {
-  const response = await fetch(`${API_BASE_URL}/api/tasks/${id}`, {
+  const response = await fetch(`/api/tasks/${id}`, {
     method: 'DELETE',
   });
 

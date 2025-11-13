@@ -25,8 +25,8 @@ class TaskService {
             }
 
             const id = Date.now().toString(); // El ID se genera mediante la fecha para que sea único
+            let newTask = new Task(id, title, description, false, new Date());
             this.tasks.push(newTask);
-            const newTask = new Task(id, title, description, false, new Date());
 
             return newTask;
         }
