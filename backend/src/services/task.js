@@ -1,14 +1,14 @@
-const Task = require('../models/task');
+const Task = require('../model/task');
 
 class TaskService {
     constructor() {
-        this.lstTask = []; // Aca esta el Array en memoria de almacenamiento temporal
+        this.tasks = []; // Aca esta el Array en memoria de almacenamiento temporal
     }
 
     // Trae todas las tareas
     getAllTasks() {
         try {
-            return this.lstTask;
+            return this.tasks;
         } catch (error) {
             throw new Error('Error al obtener las tareas: ' + error.message);
         }
