@@ -1,4 +1,4 @@
-const TaskService = require('../services/TaskService');
+const TaskService = require('../services/task');
 
 class TaskController {
     constructor() {
