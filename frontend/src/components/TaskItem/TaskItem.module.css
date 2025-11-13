@@ -1,0 +1,152 @@
+.taskItem {
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  padding: 20px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.taskItem:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.taskItem.completed {
+  background-color: #f8f9fa;
+  border-color: #d1ecf1;
+}
+
+.taskContent {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.taskHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.title {
+  margin: 0;
+  color: #333;
+  font-size: 1.2rem;
+  font-weight: 600;
+  flex: 1;
+}
+
+.taskItem.completed .title {
+  color: #666;
+  text-decoration: line-through;
+}
+
+.date {
+  color: #666;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.description {
+  margin: 0;
+  color: #555;
+  line-height: 1.5;
+  word-wrap: break-word;
+}
+
+.taskItem.completed .description {
+  color: #888;
+}
+
+.taskActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #555;
+  user-select: none;
+}
+
+.checkbox {
+  display: none;
+}
+
+.checkmark {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.checkbox:checked + .checkmark {
+  background-color: #4CAF50;
+  border-color: #4CAF50;
+}
+
+.checkbox:checked + .checkmark::after {
+  content: '✓';
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.checkboxLabel:hover .checkmark {
+  border-color: #4CAF50;
+}
+
+.deleteButton {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
+}
+
+.deleteButton:hover {
+  background-color: #d32f2f;
+}
+
+.deleteButton:active {
+  transform: scale(0.98);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .taskHeader {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .date {
+    align-self: flex-start;
+  }
+
+  .taskActions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .deleteButton {
+    align-self: stretch;
+  }
+}

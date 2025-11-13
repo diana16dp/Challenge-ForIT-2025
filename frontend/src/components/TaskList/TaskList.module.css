@@ -1,0 +1,60 @@
+.taskList {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.taskList h1 {
+  color: #333;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.loading {
+  text-align: center;
+  font-size: 18px;
+  color: #666;
+  padding: 40px;
+}
+
+.error {
+  text-align: center;
+  padding: 20px;
+  background-color: #ffe6e6;
+  border: 1px solid #ffcccc;
+  border-radius: 4px;
+  margin: 20px 0;
+}
+
+.error p {
+  color: #d63031;
+  margin-bottom: 10px;
+}
+
+.error button {
+  background-color: #d63031;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.error button:hover {
+  background-color: #c23616;
+}
+
+.empty {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  padding: 40px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+}
