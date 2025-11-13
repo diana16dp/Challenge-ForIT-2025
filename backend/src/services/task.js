@@ -35,5 +35,53 @@ class TaskService {
         }
     }
 
+    // Actualizar una tarea ya existente
+    updateTask(id, updateData) {
+        try {
+            const taskIndex = this.tasks.findIndex(task => task.id === id);
+
+            if (taskIndex === -1) {
+                throw new Error('Tarea no encontrada');
+            }
+
+            // Actualiza solo estos 3 campos: ['title', 'description', 'completed']
+            const allowedUpdates = ['title', 'description', 'completed'];
+            allowedUpdates.forEach(field => {
+                if (updateData[field] !== undefined) {
+                    this.tasks[taskIndex][field] = updateData[field];
+                }
+            });
+
+            return this.tasks[taskIndex];
+        }
+        catch (error) {
+            throw new Error('Error al actualizar la tarea: ' + error.message);
+        }
+    }
+
+    // Elimina una tarea
+    deleteTask(id) {
+        try {
+            const taskIndex = this.tasks.findIndex(task => task.id === id);
+
+            if (taskIndex === -1) {
+                throw new Error('Tarea no encontrada');
+            }
+
+            this.tasks.splice(taskIndex, 1);
+            return { message: 'Tarea eliminada correctamente' };
+        } 
+        catch (error) {
+            throw new Error('Error al eliminar la tarea: ' + error.message);
+        }
+    }
+
+    // Trae tarea segun el ID
+    getTaskById(id) {
+        return this.tasks.find(task => task.id === id);
+    }
+
 }
+
+module.exports = TaskService;
 
