@@ -1,0 +1,53 @@
+.taskFormPage {
+  min-height: 100vh;
+  background-color: #f7fafc;
+}
+
+.header {
+  background-color: white;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.backButton {
+  background: none;
+  border: none;
+  color: #4a5568;
+  font-size: 0.95rem;
+  cursor: pointer;
+  padding: 8px 0;
+  margin-bottom: 10px;
+  transition: color 0.2s ease;
+}
+
+.backButton:hover {
+  color: #2d3748;
+}
+
+.header h1 {
+  color: #2d3748;
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.content {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header {
+    padding: 16px;
+  }
+
+  .header h1 {
+    font-size: 1.5rem;
+  }
+
+  .content {
+    padding: 16px;
+  }
+}

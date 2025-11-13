@@ -6,15 +6,20 @@ interface TaskItemProps {
   task: Task;
   onDelete: (id: string) => void;
   onToggleComplete: (id: string, completed: boolean) => void;
+  onEdit: (task: Task) => void;
 }
 
-const TaskItem: React.FC<TaskItemProps> = ({ task, onDelete, onToggleComplete }) => {
+const TaskItem: React.FC<TaskItemProps> = ({ task, onDelete, onToggleComplete, onEdit }) => {
   const handleCheckboxChange = () => {
     onToggleComplete(task.id, task.completed);
   };
 
   const handleDeleteClick = () => {
     onDelete(task.id);
+  };
+
+  const handleEditClick = () => {
+    onEdit(task);
   };
 
   const formatDate = (date: Date) => {
@@ -49,13 +54,23 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onDelete, onToggleComplete })
             Completada
           </label>
 
-          <button
-            onClick={handleDeleteClick}
-            className={styles.deleteButton}
-            aria-label="Eliminar tarea">
-                
-            Eliminar
-          </button>
+          <div className={styles.actionButtons}>
+            <button
+              onClick={handleEditClick}
+              className={styles.editButton}
+              aria-label="Editar tarea"
+            >
+              Editar
+            </button>
+
+            <button
+              onClick={handleDeleteClick}
+              className={styles.deleteButton}
+              aria-label="Eliminar tarea"
+            >
+              Eliminar
+            </button>
+          </div>
         </div>
       </div>
     </li>

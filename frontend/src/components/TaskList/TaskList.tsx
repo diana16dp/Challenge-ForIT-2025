@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { type Task } from '../../types/task';
 import { getAllTasks, deleteTask, updateTask } from '../../services/taskApi';
 import TaskItem from '../TaskItem/TaskItem';
@@ -8,6 +9,7 @@ const TaskList: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   const fetchTasks = async () => {
     try {
@@ -53,6 +55,10 @@ const TaskList: React.FC = () => {
     }
   };
 
+  const handleEdit = (task: Task) => {
+    navigate(`/tasks/edit/${task.id}`, { state: { task } });
+  };
+
   useEffect(() => {
     fetchTasks();
   }, []);
@@ -83,6 +89,7 @@ const TaskList: React.FC = () => {
               task={task}
               onDelete={handleDelete}
               onToggleComplete={handleToggleComplete}
+              onEdit={handleEdit}
             />
           ))}
         </ul>
